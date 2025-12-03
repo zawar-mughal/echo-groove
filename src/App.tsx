@@ -35,20 +35,20 @@ const queryClient = new QueryClient({
 const App = () => {
   const [discordReady, setDiscordReady] = useState(!isInDiscordApp());
 
-  // useEffect(() => {
-  //   // Initialize Discord SDK if running in Discord
-  //   if (isInDiscordApp()) {
-  //     setupDiscordProxy()
-  //       .then(() => {
-  //         console.log('Discord embedded app initialized');
-  //         setDiscordReady(true);
-  //       })
-  //       .catch((error) => {
-  //         console.error('Failed to initialize Discord embedded app:', error);
-  //         setDiscordReady(true); // Continue anyway
-  //       });
-  //   }
-  // }, []);
+  useEffect(() => {
+    // Initialize Discord SDK if running in Discord
+    if (isInDiscordApp()) {
+      setupDiscordProxy()
+        .then(() => {
+          console.log('Discord embedded app initialized');
+          setDiscordReady(true);
+        })
+        .catch((error) => {
+          console.error('Failed to initialize Discord embedded app:', error);
+          setDiscordReady(true); // Continue anyway
+        });
+    }
+  }, []);
 
   // Show loading state while Discord SDK initializes
   if (!discordReady) {
