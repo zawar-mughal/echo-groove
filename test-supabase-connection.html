@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supabase Connection Test</title>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <button onclick="testConnection()">Test Connection</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function testConnection() {
+            const result = document.getElementById('result');
+            result.textContent = 'Testing connection...';
+
+            const url = 'https://jmrzmlrdyrpipqikedfk.supabase.co/rest/v1/rooms?select=*&is_active=eq.true&is_public=eq.true';
+            const headers = {
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptcnptbHJkeXJwaXBxaWtlZGZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA5MjM3ODIsImV4cCI6MjA3NjQ5OTc4Mn0.NX766QHKvRzwuMu2quFBSValGsrYuxfwH45qckxQl-Y',
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptcnptbHJkeXJwaXBxaWtlZGZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA5MjM3ODIsImV4cCI6MjA3NjQ5OTc4Mn0.NX766QHKvRzwuMu2quFBSValGsrYuxfwH45qckxQl-Y'
+            };
+
+            try {
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 5000);
+
+                const response = await fetch(url, {
+                    headers,
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeout);
+
+                if (!response.ok) {
+                    result.textContent = `HTTP Error: ${response.status} ${response.statusText}\n\nResponse: ${await response.text()}`;
+                    return;
+                }
+
+                const data = await response.json();
+                result.textContent = `✅ SUCCESS!\n\nFound ${data.length} rooms:\n\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                result.textContent = `❌ ERROR:\n\n${error.message}\n\nStack:\n${error.stack}`;
+            }
+        }
+    </script>
+</body>
+</html>

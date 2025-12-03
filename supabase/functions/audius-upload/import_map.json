@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "@audius/sdk": "npm:@audius/sdk@4.1.4",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
+  }
+}
