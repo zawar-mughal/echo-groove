@@ -34,7 +34,7 @@ export const useAudiusUpload = () => {
         onProgress,
       } = params;
 
-      console.log('📤 Uploading to Audius via upload service:', { userId, title, genre, uploadUrl: UPLOAD_SERVICE_URL });
+      // console.log('📤 Uploading to Audius via upload service:', { userId, title, genre, uploadUrl: UPLOAD_SERVICE_URL });
 
       // Create FormData for multipart upload
       const formData = new FormData();
