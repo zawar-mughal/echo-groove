@@ -43,7 +43,6 @@ export default function Home() {
   if (error) {
     return (
       <div className="min-h-[calc(100vh-4rem)] bg-background flex items-center justify-center p-4">
-        <h2>{error.message}</h2>
         <ErrorState
           title="Failed to Load Rooms"
           message="We couldn't load the rooms. Please check your connection and try again."
