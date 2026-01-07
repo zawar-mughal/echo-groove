@@ -27,7 +27,7 @@ const queryClient = new QueryClient({
       retry: 1,
       staleTime: 5 * 60 * 1000, // 5 minutes
       refetchOnWindowFocus: false,
-      throwOnError: false,  // Replaced deprecated onError
+      throwOnError: false, // Replaced deprecated onError
     },
   },
 });
@@ -40,11 +40,11 @@ const App = () => {
     if (isInDiscordApp()) {
       setupDiscordProxy()
         .then(() => {
-          console.log('Discord embedded app initialized');
+          console.log("Discord embedded app initialized");
           setDiscordReady(true);
         })
         .catch((error) => {
-          console.error('Failed to initialize Discord embedded app:', error);
+          console.error("Failed to initialize Discord embedded app:", error);
           setDiscordReady(true); // Continue anyway
         });
     }
@@ -77,8 +77,14 @@ const App = () => {
                 <Route path="/admin" element={<Admin />}>
                   <Route index element={<AdminIndex />} />
                   <Route path="rooms/:roomId" element={<AdminRoom />} />
-                  <Route path="rooms/:roomId/seasons/:seasonId" element={<AdminSeason />} />
-                  <Route path="rooms/:roomId/playlist" element={<AdminPlaylist />} />
+                  <Route
+                    path="rooms/:roomId/seasons/:seasonId"
+                    element={<AdminSeason />}
+                  />
+                  <Route
+                    path="rooms/:roomId/playlist"
+                    element={<AdminPlaylist />}
+                  />
                 </Route>
                 <Route path="/profile/:username?" element={<Profile />} />
                 <Route path="/settings" element={<Settings />} />
