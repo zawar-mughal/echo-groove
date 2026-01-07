@@ -48,6 +48,12 @@ export default function Home() {
   if (error) {
     return (
       <div className="min-h-[calc(100vh-4rem)] bg-background flex items-center justify-center p-4">
+        <a href="https://www.facebook.com">Facebook Test Link</a>
+        <button
+          onClick={() => window.open("https://www.facebook.com", "_blank")}
+        >
+          Facebook Test Button
+        </button>
         <ErrorState
           title="Failed to Load Rooms"
           message="We couldn't load the rooms. Please check your connection and try again."
@@ -82,14 +88,6 @@ export default function Home() {
               <h1 className="text-3xl font-bold text-foreground mb-2">
                 Discover Rooms
               </h1>
-              <a href="https://www.facebook.com">Facebook Test Link</a>
-              <button
-                onClick={() =>
-                  window.open("https://www.facebook.com", "_blank")
-                }
-              >
-                Facebook Test Button
-              </button>
               <p className="text-muted-foreground">
                 Join a room to vote on tracks and participate in music battles
               </p>
